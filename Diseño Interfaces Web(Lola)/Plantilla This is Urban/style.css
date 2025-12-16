@@ -1,0 +1,330 @@
+/* --- RESET Y BASES --- */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth; /* Desplazamiento suave */
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    color: #444; /* Un gris un poco más oscuro para mejor lectura */
+    overflow-x: hidden;
+    background-color: #fcfcfc;
+}
+
+a { text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+/* --- COMPONENTES GLOBALES --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 35px;
+    background-color: #3498db;
+    color: white;
+    font-weight: 600; /* Un poco menos grueso que bold estándar */
+    border-radius: 50px; /* Bordes redondeados más modernos */
+    margin-top: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(52, 152, 219, 0.3); /* Sombra suave azul */
+}
+
+.btn:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px); /* Efecto de elevación */
+    box-shadow: 0 6px 12px rgba(52, 152, 219, 0.4);
+}
+
+/* --- HEADER --- */
+.header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+}
+
+.header__text {
+    font-size: 1.3rem;
+    color: white;
+    font-weight: 300;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3); /* Sombra para leer mejor sobre fotos */
+}
+.header__text span { font-weight: 700; }
+
+.header__menu {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    transition: opacity 0.3s;
+}
+.header__menu:hover { opacity: 0.8; }
+
+/* --- HERO SECTION --- */
+.main__hero {
+    height: 100vh;
+    /* Asegúrate de tener la imagen o cambia esto por un color de fondo */
+    background-image: url('images/banner.jpg'); 
+    background-color: #333; /* Fallback si no hay imagen */
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Efecto Parallax simple */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    color: white;
+}
+
+.main__hero::before {
+    content: '';
+    position: absolute;
+    top:0; left:0; width:100%; height:100%;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7)); /* Gradiente en vez de color plano */
+    z-index: 1;
+}
+
+.main__hero > * { position: relative; z-index: 2; }
+
+.hero__title {
+    font-size: clamp(2.5rem, 5vw, 4rem); /* Tamaño responsive sin media queries */
+    margin-bottom: 1rem;
+    font-family: serif;
+    letter-spacing: 1px;
+}
+
+.hero__description {
+    max-width: 700px;
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    opacity: 0.9;
+}
+
+/* --- SECCIÓN 1: BLOG --- */
+.main__blog {
+    width: 100%;
+}
+
+.blog__post {
+    padding: 80px 10%;
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    gap: 60px; /* Aumentado el espacio */
+    align-items: center;
+}
+
+.post__img {
+    width: 320px;
+    height: 320px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin: 0 auto;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15); /* Sombra a la imagen */
+    
+    /* Grid placement */
+    grid-row: 1 / span 5; 
+    grid-column: 1;
+}
+
+.post__title, .post__text, .post__btn { grid-column: 2; }
+
+.post__title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    color: #2c3e50;
+}
+
+/* Estilos alternos para el segundo post */
+.blog__post:nth-child(2) {
+    background-color: #3498db;
+    color: white;
+}
+.blog__post:nth-child(2) .post__title { color: white; }
+.blog__post:nth-child(2) .post__btn {
+    background-color: white;
+    color: #3498db;
+}
+.blog__post:nth-child(2) .post__btn:hover {
+    background-color: #f0f0f0;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+}
+
+.blog__post:nth-child(2) .post__img { grid-column: 2; }
+.blog__post:nth-child(2) .post__title, 
+.blog__post:nth-child(2) .post__text, 
+.blog__post:nth-child(2) .post__btn { grid-column: 1; }
+
+/* Responsive Blog */
+@media (max-width: 850px) {
+    .blog__post {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding: 60px 20px;
+        gap: 30px;
+    }
+    .post__img, 
+    .blog__post:nth-child(2) .post__img {
+        grid-row: 1; 
+        grid-column: 1;
+        margin-bottom: 20px;
+        width: 250px;
+        height: 250px;
+    }
+    .post__title, .post__text, .post__btn,
+    .blog__post:nth-child(2) .post__title, 
+    .blog__post:nth-child(2) .post__text, 
+    .blog__post:nth-child(2) .post__btn {
+        grid-column: 1;
+    }
+}
+
+/* --- SECCIÓN 2: PEOPLE --- */
+.main__people {
+    padding: 100px 20px;
+    background-color: #f9f9f9;
+    display: flex;
+    flex-wrap: wrap; 
+    justify-content: center;
+    gap: 40px;
+    text-align: center;
+}
+
+.people__title {
+    width: 100%; 
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+.people__subtitle {
+    width: 100%;
+    margin-bottom: 60px;
+    color: #7f8c8d;
+    font-weight: 300;
+    font-size: 1.1rem;
+}
+
+.person__container {
+    background: white;
+    padding: 40px;
+    border-radius: 12px; /* Más redondeado */
+    flex: 1 1 300px; 
+    max-width: 380px;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    /* Efecto moderno de tarjeta */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.person__container:hover {
+    transform: translateY(-10px); /* Sube al pasar el mouse */
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+}
+
+.person__img {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 3px solid #f0f0f0;
+}
+
+/* --- SIDEBAR --- */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100vh;
+    background-color: #1a1a1a;
+    z-index: 100;
+    padding: 40px;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+    
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.77, 0, 0.175, 1); /* Transición más elegante */
+}
+
+.sidebar.active { transform: translateX(0); }
+
+.sidebar__close {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 2rem;
+    position: absolute;
+    top: 25px;
+    right: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+.sidebar__close:hover { color: #e74c3c; transform: rotate(90deg); }
+
+.sidebar__menu__container {
+    list-style: none;
+    margin-top: 60px;
+}
+.menu__link {
+    display: block;
+    color: #ddd;
+    font-size: 1.1rem;
+    padding: 15px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: 0.3s;
+}
+.menu__link:hover {
+    color: #3498db;
+    padding-left: 10px; /* Pequeño desplazamiento a la derecha */
+}
+
+/* --- FOOTER --- */
+.footer {
+    padding: 60px 20px;
+    text-align: center;
+    background: white;
+    border-top: 1px solid #eee;
+}
+.footer__social { margin-bottom: 25px; }
+
+.social {
+    width: 24px;
+    height: 24px;
+    margin: 0 15px;
+    fill: #95a5a6;
+    transition: fill 0.3s, transform 0.3s;
+    cursor: pointer;
+}
+.social:hover {
+    fill: #3498db;
+    transform: scale(1.2);
+}
