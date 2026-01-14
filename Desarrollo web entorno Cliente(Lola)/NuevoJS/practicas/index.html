@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Selector de Colores</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; transition: background 0.5s; }
+        .boton-color {
+            padding: 10px 20px;
+            margin: 5px;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 5px;
+            text-shadow: 1px 1px 2px black;
+        }
+        #info { margin-top: 20px; font-size: 1.2em; }
+    </style>
+</head>
+<body>
+
+    <h1>Elige un color para el fondo:</h1>
+    <div id="botonera"></div>
+    <p id="info">Color actual: Ninguno</p>
+
+    <script>
+        // --- 1. ESTRUCTURA DE DATOS ---
+        const paletaColores = new Map();
+        
+        paletaColores.set("Naranja", "#F39C12");
+        paletaColores.set("Lima", "#C0F312"); 
+        paletaColores.set("Turquesa", "#12F3E5");
+        paletaColores.set("Rosa", "#F312AF");
+        paletaColores.set("Rojo", "#F31212");
+
+        // --- 2. MOSTRAR EN PANTALLA ---
+        const contenedor = document.getElementById("botonera");
+        const textoInfo = document.getElementById("info");
+
+        // Recorremos el mapa: [alias, hex]
+        for (let [nombre, codigo] of paletaColores) {
+            
+            // Creamos un botón por cada color
+            let boton = document.createElement("button");
+            boton.textContent = nombre;
+            boton.className = "boton-color";
+            
+            // Le damos el color de fondo al propio botón para que se vea bonito
+            boton.style.backgroundColor = codigo;
+
+            // Añadimos la función al hacer click
+            boton.onclick = function() {
+                document.body.style.backgroundColor = codigo;
+                textoInfo.textContent = `Has elegido: ${nombre} (${codigo})`;
+            };
+
+            // Lo añadimos a la página
+            contenedor.appendChild(boton);
+        }
+    </script>
+</body>
+</html>

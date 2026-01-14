@@ -1,0 +1,9 @@
+let tegnologias=[
+  { "lenguaje": "JavaScript", "framework": "React", "ambito": "Frontend" },
+  { "lenguaje": "JavaScript", "framework": "Vue", "ambito": "Frontend" },
+  { "lenguaje": "JavaScript", "framework": "Angular", "ambito": "Frontend" },
+  { "lenguaje": "Python", "framework": "Django", "ambito": "Backend" },
+  { "lenguaje": "Python", "framework": "Flask", "ambito": "Backend" },
+  { "lenguaje": "PHP", "framework": "Laravel", "ambito": "Backend" }
+];
+

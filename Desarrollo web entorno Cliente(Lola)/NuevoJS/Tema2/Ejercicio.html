@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*Niño: hasta 12 años.
+— Adolescente: de 13 a 17 años.
+— Trabajador: de 18 a 64 años.
+Jubilado: de 65 años o más. */
+
+//---------------------------------------------------------//
+//Años
+/*
+        let M_años = 'Cuantos años tienes ?';
+        let R_años= prompt(M_años);
+        console.log(`Tienes : ${R_años} años `);
+
+        if(R_años<=12){
+            console.log('eres un niño');
+        }else if(12>R_años<=17){
+            console.log('Eres un adolescente')
+        }else if(18<R_años <=64){
+            console.log('Eres un trabajador')
+        }else if(64<R_años){
+            console.log('Eres un jubilado ')
+        }
+            */
+//---------------------------------------------------------//
+//Dias de la semana 
+/*
+let mensaje ="En que dia de la semana estamos "
+let respuesta = prompt(mensaje);
+
+switch(respuesta){
+    case 'l':console.log('Lunes');
+        break;
+    case 'm':console.log('martes');
+        break;
+    case 'x':console.log('miercoles');
+        break;
+    case 'j':console.log('jueves');
+        break;
+    case 'v':console.log('viernes');
+        break;
+    case 's':console.log('sabado');
+        break;
+    case 'd':console.log('domingo');
+        break;
+default:console.log('introduzca una letra correcta')
+
+}
+*/
+//---------------------------------------------------------//
+//while 
+/*
+*  recordar si creas una variable  y la vuelves a llamar no pongas let que e crea una nueva y no la puedes modificar la anterior
+/*
+let respuesta = '';
+while('S'!==respuesta){
+    let mensaje ="pon una letra "
+     respuesta = prompt(mensaje);
+    console.log('introduce otra')
+}
+*/
+//---------------------------------------------------------//
+//do-while
+/*
+do{
+     let mensaje ="pon una letra "
+     respuesta = prompt(mensaje);
+    console.log('introduce otra')
+    if('S'==respuesta){
+        console.log('si era la S');
+    }
+}while('S'!==respuesta)
+*/ 
+//---------------------------------------------------------//
+/* let cuenta = 0
+for(i=0;i<100;i++){
+if(i%7==0){
+    console.log(i);
+        cuenta++;
+}
+
+
+}
+console.log(`hay : ${cuenta}`); */
+
+
+/* ----------------------- */
+
+ var lista = prompt("Introduce las 3 notas separados por puntos y comas.");
+ var valores=[];
+valores=lista.split(`;`);
+
+
+numero=valores.length;
+console.log(`Este seria el numero de notas que tienes ${numero}`);
+var suma = 0;
+
+for(let i= 0 ; i<numero; i++){
+    suma = suma + Number(valores[i]);
+}
+let notamedia = suma/numero;
+
+if(notamedia >= 0 && notamedia < 5){
+    console.log("Suspenso");
+} else if(notamedia >= 5 && notamedia <= 10){
+    console.log('Aprobado');
+} else {
+    console.log('Algo hiciste mal mete un numero');
+}
+
+</script>
+</body>
+</html>
