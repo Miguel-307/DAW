@@ -1,0 +1,154 @@
+<style>
+    /* --- ESTILOS GENERALES Y LAYOUT --- */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7f6;
+    display: flex;
+    justify-content: center;
+    padding: 40px;
+}
+
+#registroForm {
+    background-color: #ffffff;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 25px;
+}
+
+/* --- ESTILOS DE CAMPO (LABEL Y INPUT) --- */
+label {
+    display: block;
+    margin-bottom: 5px;
+    margin-top: 15px;
+    font-weight: 600;
+    color: #555;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box; /* Asegura que el padding no cambie el ancho total */
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    border-color: #007bff;
+    outline: none; /* Quitar el borde azul por defecto */
+}
+
+/* --- ESTILOS DE ERROR --- */
+div[id^="error-"] { /* Selecciona divs cuyo id empieza por 'error-' */
+    height: 18px; /* Mantiene el espacio reservado para el error */
+    color: #dc3545; /* Rojo de error */
+    font-size: 0.85em;
+    margin-top: 5px;
+}
+
+/* --- ESTILOS DEL BOTÓN --- */
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    margin-top: 25px;
+    background-color: #28a745; /* Verde para 'Registrar' */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 700;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #218838;
+}
+
+/* --- ESTILOS DEL RESULTADO FINAL --- */
+#resultadoFinal {
+    text-align: center;
+    padding: 15px;
+    border-radius: 5px;
+    font-weight: 600;
+}
+</style>
+<section>
+    <h2>3. Registro de Tienda Online</h2>
+    <form id="registroForm" novalidate>
+        <label for="username">Usuario (4-15 chars):</label>
+        <input type="text" id="username" name="username">
+        <div id="error-username" style="color: red;"></div>
+
+        <label for="password">Contraseña (min 8 chars):</label>
+        <input type="password" id="password" name="password">
+        <div id="error-password" style="color: red;"></div>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email">
+        <div id="error-email" style="color: red;"></div>
+
+        <button type="submit">Registrar</button>
+    </form>
+    <div id="resultadoFinal" style="margin-top: 15px;"></div>
+</section>
+<script>
+    document.getElementById('registroForm').addEventListener('submit', function(e) {
+        e.preventDefault(); // Evitar envío real del formulario
+
+        // Referencias
+        const user = document.getElementById('username');
+        const pass = document.getElementById('password');
+        const email = document.getElementById('email');
+        
+        const errUser = document.getElementById('error-username');
+        const errPass = document.getElementById('error-password');
+        const errEmail = document.getElementById('error-email');
+        const resultado = document.getElementById('resultadoFinal');
+
+        // Limpiar mensajes previos
+        errUser.textContent = "";
+        errPass.textContent = "";
+        errEmail.textContent = "";
+        resultado.textContent = "";
+
+        let esValido = true;
+
+        // Validación Usuario (4-15 chars)
+        if (user.value.length < 4 || user.value.length > 15) {
+            errUser.textContent = "El usuario debe tener entre 4 y 15 caracteres.";
+            esValido = false;
+        }
+
+        // Validación Password (min 8 chars)
+        if (pass.value.length < 8) {
+            errPass.textContent = "La contraseña debe tener al menos 8 caracteres.";
+            esValido = false;
+        }
+
+        // Validación Email (Regex simple)
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email.value)) {
+            errEmail.textContent = "El formato del email no es válido.";
+            esValido = false;
+        }
+
+        // Éxito
+        if (esValido) {
+            resultado.style.color = "green"; // Opcional para dar feedback visual positivo
+            resultado.textContent = "Registro realizado con éxito.";
+            // Opcional: limpiar formulario
+            // this.reset(); 
+        }
+    });
+</script>

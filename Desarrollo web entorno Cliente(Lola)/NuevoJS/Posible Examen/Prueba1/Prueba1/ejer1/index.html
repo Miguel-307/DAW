@@ -1,0 +1,52 @@
+<section>
+    <h2>1. Conversor de Unidades</h2>
+    <input type="number" id="eurosInput" placeholder="Cantidad en Euros (€)">
+    <button id="convertBtn">Convertir</button>
+    <div id="euroError" style="color: red;"></div>
+    <ul id="resultsList"></ul>
+</section>
+
+
+<script>
+    const tasas = [
+    { moneda: "Dólar (USD)", tasa: 1.08 },
+    { moneda: "Libra (GBP)", tasa: 0.85 },
+    { moneda: "Yen (JPY)", tasa: 160.00 }
+];
+// ... (aquí está tu array 'tasas' existente) ...
+
+    // Referencias al DOM
+    const inputEuros = document.getElementById('eurosInput');
+    const btnConvertir = document.getElementById('convertBtn');
+    const divError = document.getElementById('euroError');
+    const ulResultados = document.getElementById('resultsList');
+
+    btnConvertir.addEventListener('click', () => {
+        // Limpiar resultados anteriores y errores
+        ulResultados.innerHTML = "";
+        divError.textContent = "";
+
+        const valorInput = inputEuros.value;
+        const cantidad = parseFloat(valorInput);
+
+        // Validaciones (Ejercicio 1. Validación y Errores)
+        if (valorInput.trim() === "" || isNaN(cantidad)) {
+            divError.textContent = "Por favor, introduce un número válido.";
+            return;
+        }
+
+        if (cantidad < 0) {
+            divError.textContent = "La cantidad no puede ser negativa.";
+            return;
+        }
+
+        // Funcionalidad Principal y Renderizado Dinámico
+        tasas.forEach(obj => {
+            const resultado = (cantidad * obj.tasa).toFixed(2);
+            
+            const li = document.createElement('li');
+            li.textContent = `${cantidad} € = ${resultado} ${obj.moneda}`;
+            ulResultados.appendChild(li);
+        });
+    });
+</script>

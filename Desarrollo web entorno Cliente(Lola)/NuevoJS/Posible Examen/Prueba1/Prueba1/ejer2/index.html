@@ -1,0 +1,57 @@
+<section>
+    <h2>2. Catálogo de Productos</h2>
+    <div id="filterControls">
+        <button id="btnElectrónica">Electrónica</button>
+        <button id="btnHogar">Hogar</button>
+        <button id="btnTodos">Mostrar Todos</button>
+    </div>
+    <ul id="productList"></ul>
+</section>
+
+<script>
+
+const catalogo = [
+    { id: 1, nombre: "Laptop", precio: 800, categoria: "Electrónica" },
+    { id: 2, nombre: "Smart TV", precio: 550, categoria: "Electrónica" },
+    { id: 3, nombre: "Mesa Auxiliar", precio: 120, categoria: "Hogar" },
+    { id: 4, nombre: "Aspiradora", precio: 300, categoria: "Hogar" },
+    { id: 5, nombre: "Mouse Inalámbrico", precio: 25, categoria: "Electrónica" }
+];
+
+// ... (aquí está tu array 'catalogo' existente) ...
+
+    const listaProductos = document.getElementById('productList');
+    const btnElectronica = document.getElementById('btnElectrónica');
+    const btnHogar = document.getElementById('btnHogar');
+    const btnTodos = document.getElementById('btnTodos');
+
+    // Función de renderizado (Reutilizable para render inicial y filtros)
+    function mostrarProductos(arrayProductos) {
+        listaProductos.innerHTML = ""; // Limpiar lista
+        
+        arrayProductos.forEach(producto => {
+            const li = document.createElement('li');
+            // Puedes ajustar el formato de texto según prefieras
+            li.textContent = `${producto.nombre} - ${producto.precio}€`; 
+            listaProductos.appendChild(li);
+        });
+    }
+
+    // Renderizado inicial (Ejercicio 2. Renderizado inicial)
+    mostrarProductos(catalogo);
+
+    // Filtrado de la lista (Ejercicio 2. Filtrado)
+    btnElectronica.addEventListener('click', () => {
+        const filtrados = catalogo.filter(p => p.categoria === "Electrónica");
+        mostrarProductos(filtrados);
+    });
+
+    btnHogar.addEventListener('click', () => {
+        const filtrados = catalogo.filter(p => p.categoria === "Hogar");
+        mostrarProductos(filtrados);
+    });
+
+    btnTodos.addEventListener('click', () => {
+        mostrarProductos(catalogo);
+    });
+</script>
