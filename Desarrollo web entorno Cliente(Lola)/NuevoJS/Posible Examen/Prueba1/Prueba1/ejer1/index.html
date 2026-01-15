@@ -13,23 +13,23 @@
     { moneda: "Libra (GBP)", tasa: 0.85 },
     { moneda: "Yen (JPY)", tasa: 160.00 }
 ];
-// ... (aquí está tu array 'tasas' existente) ...
 
-    // Referencias al DOM
+
+
     const inputEuros = document.getElementById('eurosInput');
     const btnConvertir = document.getElementById('convertBtn');
     const divError = document.getElementById('euroError');
     const ulResultados = document.getElementById('resultsList');
 
     btnConvertir.addEventListener('click', () => {
-        // Limpiar resultados anteriores y errores
-        ulResultados.innerHTML = "";
-        divError.textContent = "";
 
-        const valorInput = inputEuros.value;
+        ulResultados.innerHTML = "";//añadir algo dentro innerHTML
+        divError.textContent = "";//textcontent para añadir palabras directramente
+
+        const valorInput = inputEuros.value;//aqui coge un valor del input
         const cantidad = parseFloat(valorInput);
 
-        // Validaciones (Ejercicio 1. Validación y Errores)
+//trim quita espacios en blanco al inicio y al final
         if (valorInput.trim() === "" || isNaN(cantidad)) {
             divError.textContent = "Por favor, introduce un número válido.";
             return;
@@ -39,10 +39,9 @@
             divError.textContent = "La cantidad no puede ser negativa.";
             return;
         }
-
-        // Funcionalidad Principal y Renderizado Dinámico
+ 
         tasas.forEach(obj => {
-            const resultado = (cantidad * obj.tasa).toFixed(2);
+            const resultado = (cantidad * obj.tasa).toFixed(2);//redonde a 2 decimales
             
             const li = document.createElement('li');
             li.textContent = `${cantidad} € = ${resultado} ${obj.moneda}`;

@@ -7,14 +7,12 @@ let tegnologias=[
   { "lenguaje": "PHP", "framework": "Laravel", "ambito": "Backend" }
 ];
 
-// ... (tu array 'tegnologias' existente) ...
-
-const contenedorLista = document.querySelector('.framework-lista');
+const contenedorLista = document.querySelector('.framework-lista');//coge el valor 
 const radios = document.querySelectorAll('input[name="tipo-ambito"]');
 
-// Función para renderizar según el ámbito
+
 function renderizarFrameworks(ambitoSeleccionado) {
-    // 1. Limpiar contenido (Ejercicio 4. Limpia contenido)
+
     contenedorLista.innerHTML = "";
 
     // 2. Filtrar datos (Ejercicio 4. Realiza el filtrado)

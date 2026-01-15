@@ -18,32 +18,26 @@ const catalogo = [
     { id: 5, nombre: "Mouse Inalámbrico", precio: 25, categoria: "Electrónica" }
 ];
 
-// ... (aquí está tu array 'catalogo' existente) ...
-
     const listaProductos = document.getElementById('productList');
     const btnElectronica = document.getElementById('btnElectrónica');
     const btnHogar = document.getElementById('btnHogar');
     const btnTodos = document.getElementById('btnTodos');
 
-    // Función de renderizado (Reutilizable para render inicial y filtros)
     function mostrarProductos(arrayProductos) {
-        listaProductos.innerHTML = ""; // Limpiar lista
+        listaProductos.innerHTML = ""; //para limpiar empieza vacio 
         
-        arrayProductos.forEach(producto => {
+        arrayProductos.forEach(producto => {//cuando se forme el forecah nombre distinto 
             const li = document.createElement('li');
-            // Puedes ajustar el formato de texto según prefieras
             li.textContent = `${producto.nombre} - ${producto.precio}€`; 
             listaProductos.appendChild(li);
         });
     }
 
-    // Renderizado inicial (Ejercicio 2. Renderizado inicial)
     mostrarProductos(catalogo);
 
-    // Filtrado de la lista (Ejercicio 2. Filtrado)
-    btnElectronica.addEventListener('click', () => {
-        const filtrados = catalogo.filter(p => p.categoria === "Electrónica");
-        mostrarProductos(filtrados);
+    btnElectronica.addEventListener('click', () => {// a cada boton le asigno un evento
+        const filtrados = catalogo.filter(p => p.categoria === "Electrónica");//la p para asignar catalogo a cada producto
+        mostrarProductos(filtrados);//filtrados es un nuevo array map 
     });
 
     btnHogar.addEventListener('click', () => {
